@@ -1,7 +1,6 @@
-
 import { IonApp, setupIonicReact } from "@ionic/react";
-
-import {AppNavigation} from "./components/navigation";
+import { ProviderUser } from "./context";
+import { AppNavigation } from "./components/navigation";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -35,10 +34,10 @@ import "./theme/variables.css";
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <AppNavigation/>
-  </IonApp>
-);
-
-export default App;
+export default function App() {
+  return (
+    <ProviderUser>
+      <AppNavigation />
+    </ProviderUser>
+  );
+}
