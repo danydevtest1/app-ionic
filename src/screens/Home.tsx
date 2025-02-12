@@ -1,12 +1,13 @@
-
-
+import {IonPage, IonContent} from "@ionic/react";
 
 export function Home()  {
  
   return (
-   <div>
-   <h1>Home</h1>
-   </div>
+   <IonPage>
+    <IonContent>
+      <h1>Home</h1>
+    </IonContent>
+   </IonPage>
   );
 };
 

@@ -1,7 +1,12 @@
-import React from 'react'
+import {IonPage, IonContent} from '@ionic/react'
+import {Avatar} from "../components/profile";
 
 export function Settings() {
   return (
-    <div>Settings</div>
+    <IonPage>
+      <IonContent>
+        <Avatar/>
+      </IonContent>
+    </IonPage>
   )
 }
