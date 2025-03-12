@@ -1,5 +1,7 @@
 import { useState, useEffect, createContext } from "react";
 import { ContextUserTypes } from "./ContextUser.type";
+import {User} from "../../assets";
+import {ENV} from "../../utils";
 
 export const ContextUser = createContext<ContextUserTypes.Context>({
   username: "",
@@ -16,13 +18,23 @@ export function ProviderUser(props: ContextUserTypes.Props) {
   const [avatar, setAvatar] = useState("");
 
   const onChangeUserName = (username: string) => {
-    console.log("camnbio de nombre de usuario");
+   localStorage.setItem(ENV.LOCAL_STORAGE.USERNAME,username);
+    setUsername(username);
   };
 
   const onChangeAvatar=(avatar:string)=>{
-    console.log("Cambio de avatar");
-    
+    localStorage.setItem(ENV.LOCAL_STORAGE.AVATAR,avatar);
+    setAvatar(avatar);
   }
+
+  useEffect(() => {
+    const responseUsername=localStorage.getItem(ENV.LOCAL_STORAGE.USERNAME);
+    setUsername(responseUsername || "Dany Cambrano");
+
+    const responseAvatar=localStorage.getItem(ENV.LOCAL_STORAGE.AVATAR);
+    setAvatar(responseAvatar || User)
+  }, [])
+  
 
   const valueContext: ContextUserTypes.Context = {
     username,

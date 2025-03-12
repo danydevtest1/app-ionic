@@ -1,5 +1,5 @@
-import avatar from "./avatar.png";
+import User from "./avatar.png";
 
 export {
-    avatar
+    User
 }
