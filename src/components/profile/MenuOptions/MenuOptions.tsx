@@ -2,12 +2,18 @@ import {IonContent, IonModal} from '@ionic/react'
 import {imageOutline,personCircleOutline} from "ionicons/icons";
 import {Camera,CameraResultType,CameraSource} from "@capacitor/camera";
 import {useUser} from "../../../hooks";
-import {Options} from "./Options"
+import {Options} from "./Options";
+import {useRef} from "react";
+import {CambioDatos} from "../CambioDatos";
 
 import "./MenuOptions.scss";
 
 export function MenuOptions() {
+    const modalRef=useRef<HTMLIonModalElement>(null);
 const {onChangeAvatar} = useUser();
+
+const openName=()=>modalRef.current?.present();
+const closeModal=()=>modalRef.current?.dismiss();
 
     const openCamera=async()=>{
         const response= await Camera.getPhoto({
@@ -22,9 +28,16 @@ const {onChangeAvatar} = useUser();
         
     }
   return (
+    <>
     <div className='menu-options-container'>
         <Options titulo="Cambiar avatar" icon={imageOutline} onClick={openCamera}/>
         <Options titulo="Cambiar nombre" icon={personCircleOutline} onClick={()=>console.log("")}/>
     </div>
+    <IonModal trigger='open-modal' initialBreakpoint={0.35} breakpoints={[0,0.35]}>
+        <IonContent ref={modalRef} className='ion-paddin'>
+           {/*  <CambioDatos onClose={closeModal}/> */}
+        </IonContent>
+    </IonModal>
+    </>
   )
 }
