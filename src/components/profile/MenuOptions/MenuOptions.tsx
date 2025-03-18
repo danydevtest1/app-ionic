@@ -31,11 +31,11 @@ const closeModal=()=>modalRef.current?.dismiss();
     <>
     <div className='menu-options-container'>
         <Options titulo="Cambiar avatar" icon={imageOutline} onClick={openCamera}/>
-        <Options titulo="Cambiar nombre" icon={personCircleOutline} onClick={()=>console.log("")}/>
+        <Options titulo="Cambiar nombre" icon={personCircleOutline} onClick={openName}/>
     </div>
-    <IonModal trigger='open-modal' initialBreakpoint={0.35} breakpoints={[0,0.35]}>
-        <IonContent ref={modalRef} className='ion-paddin'>
-           {/*  <CambioDatos onClose={closeModal}/> */}
+    <IonModal ref={modalRef} trigger='open-modal' initialBreakpoint={0.35} breakpoints={[0,0.35]}>
+        <IonContent  className='ion-paddin'>
+             <CambioDatos onClose={closeModal}/> 
         </IonContent>
     </IonModal>
     </>
