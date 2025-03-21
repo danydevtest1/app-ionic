@@ -36,8 +36,10 @@ setupIonicReact();
 
 export default function App() {
   return (
+    <IonApp>
     <ProviderUser>
       <AppNavigation />
     </ProviderUser>
+    </IonApp>
   );
 }

@@ -17,6 +17,14 @@ export function ProviderUser(props: ContextUserTypes.Props) {
   const [username, setUsername] = useState("");
   const [avatar, setAvatar] = useState("");
 
+  useEffect(() => {
+    const responseUsername=localStorage.getItem(ENV.LOCAL_STORAGE.USERNAME);
+    setUsername(responseUsername || "Jose");
+
+    const responseAvatar=localStorage.getItem(ENV.LOCAL_STORAGE.AVATAR);
+    setAvatar(responseAvatar || User)
+  }, [])
+
   const onChangeUserName = (username: string) => {
    localStorage.setItem(ENV.LOCAL_STORAGE.USERNAME,username);
     setUsername(username);
@@ -27,13 +35,7 @@ export function ProviderUser(props: ContextUserTypes.Props) {
     setAvatar(avatar);
   }
 
-  useEffect(() => {
-    const responseUsername=localStorage.getItem(ENV.LOCAL_STORAGE.USERNAME);
-    setUsername(responseUsername || "Dany Cambrano");
-
-    const responseAvatar=localStorage.getItem(ENV.LOCAL_STORAGE.AVATAR);
-    setAvatar(responseAvatar || User)
-  }, [])
+  
   
 
   const valueContext: ContextUserTypes.Context = {

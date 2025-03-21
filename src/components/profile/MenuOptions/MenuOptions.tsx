@@ -34,7 +34,7 @@ const closeModal=()=>modalRef.current?.dismiss();
         <Options titulo="Cambiar nombre" icon={personCircleOutline} onClick={openName}/>
     </div>
     <IonModal ref={modalRef} trigger='open-modal' initialBreakpoint={0.35} breakpoints={[0,0.35]}>
-        <IonContent  className='ion-paddin'>
+    <IonContent className="ion-padding">
              <CambioDatos onClose={closeModal}/> 
         </IonContent>
     </IonModal>

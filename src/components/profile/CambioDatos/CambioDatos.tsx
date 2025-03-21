@@ -1,51 +1,45 @@
-import {IonInput,IonButton} from '@ionic/react';
-import {useFormik} from "formik";
-import * as Yup from "yup"; 
-import {useUser} from "../../../hooks";
+import { useRef } from "react";
+import { IonInput, IonButton } from "@ionic/react";
+import { useFormik } from "formik";
+import * as YUP from "yup";
+import { useUser } from "../../../hooks";
 
-import {CambioDatosType} from "./CambioDatos.type";
+import { CambioDatosType } from "./CambioDatos.type";
 
 import "./CambioDatos.scss";
 
-export function CambioDatos(props:CambioDatosType.Props) {
-  const {onClose}=props;
-  const {onChangeUserName}=useUser();
-  
-  const formik=useFormik({
-    initialValues:{
-      nombre:""
-    },
-    validationSchema: Yup.object({
-      nombre: Yup.string().required("danger")
+export function CambioDatos(props: CambioDatosType.Props) {
+  const { onClose } = props;
+  const { onChangeUserName } = useUser();
+
+  const inputRef = useRef<HTMLIonInputElement>(null);
+
+  const formik = useFormik({
+    initialValues: { name: "" },
+    validationSchema: YUP.object({
+      name: YUP.string().required("danger"),
     }),
-    onSubmit:(formValue)=>{
-      console.log(formValue);
-      
-    //  onChangeUserName(formValue.nombre);
+    onSubmit: (formValue) => {
+      console.log(formValue.name);
+      onChangeUserName(formValue.name);
       onClose();
-    }
-  })
-
-  const onClick=()=>{
-    try {
-      console.log("Mensaje");
-      
-    } catch (error) {
-      console.log(error);
-      
-    }
-  }
-
+    },
+  });
 
   return (
-    <div className='change-dato'>
-      <IonInput name='nombre' 
-      placeholder='cambiar nombre'
-       autoFocus color={formik.errors.nombre}
-       onIonChange={(e)=>formik.setFieldValue("nombre",e.detail.value)}/>
-       <IonButton expand='block' onClick={()=>formik.handleSubmit()}>
-        Actualizar Nombre...
-       </IonButton>
+    <div className="change-dato">
+     
+      <IonInput
+      name="nombre"
+        placeholder="ingresa nombre"
+        ref={inputRef}
+        value={formik.values.name}
+        color={formik.errors.name}
+        onIonChange={(e) => formik.setFieldValue("name", e.detail.value)}
+      />
+      <IonButton expand="block" onClick={()=>formik.handleSubmit()}>
+        Enviar...
+      </IonButton>
     </div>
-  )
+  );
 }
