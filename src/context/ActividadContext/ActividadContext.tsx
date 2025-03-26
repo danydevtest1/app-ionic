@@ -2,7 +2,7 @@ import React, { createContext, useState, useRef } from 'react';
 import {IonModal,IonContent} from "@ionic/react";
 import {ActModel} from "../../models";
 import {ActividadContextType} from "./ActividadContext.type";
-
+import {FormActividades} from "../../components/Actividades"
 export const ActividadContext=createContext<ActividadContextType.Context>({
     totalAct:0,
     totalCompActi:0,
@@ -24,7 +24,7 @@ export function ActividadesProvider(props:ActividadContextType.Props){
     const [actividades, setActividades] = useState<ActModel[]>([]);
     const [completActi, setCompletActi] = useState<ActModel[]>([]);
 
-    const abrirFormAct=()=>modalRef.current?.present();
+    const abrirFormActi=()=>modalRef.current?.present();
     const cerrarFormActi=()=>modalRef.current?.dismiss();
 
     const crearActividad=()=>{}
@@ -35,9 +35,9 @@ export function ActividadesProvider(props:ActividadContextType.Props){
         totalCompActi,
         actividades:[],
         completActi:[],
-        abrirFormActi:()=>{},
-        crearActividad:()=>{},
-        checkCompleto:()=>{}
+        abrirFormActi,
+        crearActividad,
+        checkCompleto
     }
 
     return(
@@ -46,7 +46,7 @@ export function ActividadesProvider(props:ActividadContextType.Props){
 
             <IonModal ref={modalRef} trigger='open-modal' initialBreakpoint={0.25} breakpoints={[0,0.25]}>
                 <IonContent className='ion-padding'>
-                    <h1>Form modal</h1>
+                    <FormActividades/>
                 </IonContent>
             </IonModal>
         </ActividadContext.Provider>
