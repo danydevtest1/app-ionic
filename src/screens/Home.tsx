@@ -1,11 +1,14 @@
 import {IonPage, IonContent} from "@ionic/react";
+import {ListaActividades} from '../components/Actividades';
+import {Header} from "../components/Header"
 
 export function Home()  {
  
   return (
    <IonPage>
+    <Header/>
     <IonContent>
-      <h1>Home</h1>
+      <ListaActividades/>
     </IonContent>
    </IonPage>
   );
